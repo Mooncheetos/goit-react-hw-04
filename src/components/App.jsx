@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import ImageModal from "./ImageModal/ImageModal";
@@ -6,7 +6,7 @@ import Loader from "./Loader/Loader";
 import LoaderMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
 import SearchBar from "./SearchBar/SearchBar";
 import { requestImagesByQuery } from "./services/api";
-import './App.css'
+import "./App.css";
 
 function App() {
   const [images, setImages] = useState(null);
