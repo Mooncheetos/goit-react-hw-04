@@ -1,5 +1,5 @@
 import css from "./LoadMoreBtn.module.css";
-import { Link } from "";
+import { Link } from "react-scroll";
 
 function LoadMoreBtn() {
     return (

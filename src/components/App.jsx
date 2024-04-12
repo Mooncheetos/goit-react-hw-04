@@ -39,14 +39,46 @@ function App() {
     }
     fetchImagesByQuery();
   }, [query, page]);
+  
+  const handleSearch = (inputValue) => {
+    if (inputValue !== query) {
+      setQuery(inputValue);
+      setPage(1);
+      setImages([]);
+    }
+  };
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+    openModal();
+  };
+
+  const loadMoreImages = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+  
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   return (
     <>
       {Array.isArray(images) && (<ImageGallery images={images} handleImageClick={handleImageClick} />)}
-      {error && <ErrorMessage /> }
+      {error && <ErrorMessage />}
       {loading && <Loader />}
+      <SearchBar onSearch={handleSearch} />
+      {modalIsOpen && (<ImageModal
+        onClose={closeModal}
+        isOpen={modalIsOpen}
+        image={selectedImage}
+      />)}
+      {showBtn && <LoaderMoreBtn loadMoreImages={loadMoreImages} />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
