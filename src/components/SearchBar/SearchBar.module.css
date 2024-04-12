@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: center;
-    background-color: #766e7265;
+    background-color: #9e5d7e65;
     border: 3px solid #e3dce2;
     border-radius: 20px;
     padding: 20px;
@@ -38,5 +38,5 @@
 
 .searchBtn:hover,
 .searchBtn:focus {
-    background-color: #494040;
+    background-color: #836666;
 }

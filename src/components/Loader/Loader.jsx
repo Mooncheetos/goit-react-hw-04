@@ -11,7 +11,7 @@ function Loader() {
         ariaLabel="hourglass-loading"
         wrapperStyle={{}}
         wrapperClass=""
-        colors={['#306cce', '#72a1ed']}
+        colors={['#6b4b4b', '#b17a7a']}
       />
     </div>
   );

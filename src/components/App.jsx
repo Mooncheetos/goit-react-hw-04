@@ -3,7 +3,8 @@ import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import ImageGallery from "./ImageGallery/ImageGallery";
 import ImageModal from "./ImageModal/ImageModal";
 import Loader from "./Loader/Loader";
-import LoaderMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
+import LoadMore from "./LoadMoreBtn/LoadMoreBtn";
 import SearchBar from "./SearchBar/SearchBar";
 import { requestImagesByQuery } from "./services/api";
 import "./App.css";
@@ -16,7 +17,7 @@ function App() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [showBtn, setShowBtn] = useState(false);
+  // const [showBtn, setShowBtn] = useState(false);
 
   useEffect(() => {
     if (!query) return;
@@ -30,7 +31,7 @@ function App() {
         } else {
           setImages(results);
         }
-        setShowBtn(total_pages > page);
+        // setShowBtn(total_pages > page);
       } catch (error) {
         setError(true);
       } finally {
@@ -53,9 +54,13 @@ function App() {
     openModal();
   };
 
-  const loadMoreImages = () => {
-    setPage((prevPage) => prevPage + 1);
+  const loadMore = () => {
+    setPage((page) => page + 1);
   };
+
+  // const loadMoreImages = () => {
+  //   setPage((prevPage) => prevPage + 1);
+  // };
   
   const openModal = () => {
     setModalIsOpen(true);
@@ -67,16 +72,18 @@ function App() {
 
   return (
     <>
+      <SearchBar onSearch={handleSearch} />
       {Array.isArray(images) && (<ImageGallery images={images} handleImageClick={handleImageClick} />)}
       {error && <ErrorMessage />}
-      {loading && <Loader />}
-      <SearchBar onSearch={handleSearch} />
+      {loading && <Loader />}      
       {modalIsOpen && (<ImageModal
         onClose={closeModal}
         isOpen={modalIsOpen}
         image={selectedImage}
       />)}
-      {showBtn && <LoaderMoreBtn loadMoreImages={loadMoreImages} />}
+{images && images.length > 0 && <LoadMore loadMore={loadMore} />}
+
+      {/* {showBtn && <LoadMoreBtn loadMoreImages={loadMoreImages} />} */}
     </>
   );
 }
